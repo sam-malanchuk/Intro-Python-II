@@ -3,6 +3,12 @@ from room import Room
 # Declare all the rooms
 
 room = {
+    'fay': Room("Fay Pirate Bay", "room action here"),
+    'village': Room("Westlight Village", "room action here"),
+    'mountain': Room("Northcrest Mountain", "room action here"),
+    'forest': Room("Woodmallow Forest", "room action here"),
+    'castle': Room("Black Castle", "room action here"),
+    'island': Room("Glassfall Island", "room action here"),
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
 

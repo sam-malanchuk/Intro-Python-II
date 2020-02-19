@@ -7,5 +7,8 @@ class Room:
         self.action = action
     
     def __str__(self):
+        return self.name
+
+    def entered(self):
         output = f'You entered {self.name} and {self.action}'
         return output

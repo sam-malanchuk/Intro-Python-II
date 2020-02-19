@@ -9,35 +9,23 @@ room = {
     'forest': Room("Woodmallow Forest", "room action here"),
     'castle': Room("Black Castle", "room action here"),
     'island': Room("Glassfall Island", "room action here"),
-    'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
-
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
-
-    'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
-into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
-
-    'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
-
-    'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
-chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
 }
 
 
 # Link rooms together
 
-room['outside'].n_to = room['foyer']
-room['foyer'].s_to = room['outside']
-room['foyer'].n_to = room['overlook']
-room['foyer'].e_to = room['narrow']
-room['overlook'].s_to = room['foyer']
-room['narrow'].w_to = room['foyer']
-room['narrow'].n_to = room['treasure']
-room['treasure'].s_to = room['narrow']
+room['fay'].go_e = room['village']
+room['fay'].go_s = room['mountain']
+room['village'].go_s = room['forest']
+room['village'].go_w = room['fay']
+room['mountain'].go_e = room['forest']
+room['mountain'].go_n = room['fay']
+room['forest'].go_n = room['village']
+room['forest'].go_e = room['castle']
+room['forest'].go_s = room['island']
+room['forest'].go_w = room['mountain']
+room['castle'].go_w = room['forest']
+room['island'].go_n = room['forest']
 
 #
 # Main

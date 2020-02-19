@@ -2,13 +2,13 @@
 # description attributes.
 
 class Room:
-    def __init__(self, name, action):
+    def __init__(self, name, description):
         self.name = name
-        self.action = action
+        self.description = description
     
     def __str__(self):
         return self.name
 
     def entered(self):
-        output = f'You entered {self.name} and {self.action}'
+        output = f'You entered {self.name} and {self.description}'
         return output

@@ -35,14 +35,14 @@ room['island'].go_n = room['forest']
 
 # Make a new player object that is currently in the 'outside' room.
 print("\nWelcome to Meadowswamp Adventure!\nTo navigate around you will use the cardinal directions\nNorth (N), East (E), South (S), and West (W).\nYou can use \'q\' at any time to leave the game.\n")
-# playerName = input("Enter your character's name: ")
+playerName = input("Enter your character's name: ")
 # automatically name the player and start the game for now
-player = Player("Ethan", room['village'])
+player = Player(playerName, room['village'])
 
 # Write a loop that:
 #
 # * Prints the current room name
-print(f'You start in the {player.currentRoom}.')
+print(f'\nWelcome {player.name}, you start in the {player.currentRoom}.\n')
 # * Prints the current description (the textwrap module might be useful here).
 print(textwrap.fill(player.currentRoom.description, 50))
 # * Waits for user input and decides what to do.

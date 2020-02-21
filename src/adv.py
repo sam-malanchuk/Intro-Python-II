@@ -6,12 +6,12 @@ import textwrap
 # Declare all the items
 
 item = {
-    'sword': Item('Bronze Sword', 'an extremely powerful and reinforced bronze with a sharp double-edged blade'),
-    'treasure': Item('Treasure Box', 'something about the treasure box'),
-    'shrubs': Item('Mountain Shrubs', 'something about the mountain shrubs'),
-    'coat': Item('Fur Coat', 'something about the fur coat'),
-    'fish': Item('Sea Fish', 'something about the sea fish'),
-    'rope': Item('Rope', 'something about the rope'),
+    'sword': Item('sword', 'an extremely powerful and reinforced bronze with a sharp double-edged blade'),
+    'treasure': Item('treasure', 'something about the treasure box'),
+    'shrubs': Item('shrubs', 'something about the mountain shrubs'),
+    'coat': Item('coat', 'something about the fur coat'),
+    'fish': Item('fish', 'something about the sea fish'),
+    'rope': Item('rope', 'something about the rope'),
 }
 
 # Declare all the rooms
@@ -57,68 +57,115 @@ player = Player(playerName, room['village'])
 print(f'\nWelcome {player.name}, you start in the {player.currentRoom}.\n')
 # * Prints the current description (the textwrap module might be useful here).
 print(textwrap.fill(player.currentRoom.description, 50))
+if len(player.currentRoom.items) > 0:
+    print('\nYou found the following items:')
+    for item in player.currentRoom.items:
+        print(item.name)
+else:
+    print('\nThere doesn\'t seem to be any items here')
 # * Waits for user input and decides what to do.
-move = input("Enter N, S, W, or E to move in the direction:").lower()
+move = input("\nEnter N, S, W, or E to move in the direction:").lower().split()
+# print(f'This whats up:{move}')
 #
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
-while move != "q":
-    if move == "n":
-        if hasattr(player.currentRoom, 'go_n'):
-            player.currentRoom = player.currentRoom.go_n
-            print(f'You went to the North and ended up in the {player.currentRoom}.\n')
-            print(textwrap.fill(player.currentRoom.description, 50))
-            if len(player.currentRoom.items) > 0:
-                print('\nYou found the following items:')
-                for item in player.currentRoom.items:
+while move[0] != "q":
+    if len(move) == 1:
+        # only one word input
+        if move[0] == "n":
+            if hasattr(player.currentRoom, 'go_n'):
+                player.currentRoom = player.currentRoom.go_n
+                print(f'You went to the North and ended up in the {player.currentRoom}.\n')
+                print(textwrap.fill(player.currentRoom.description, 50))
+                if len(player.currentRoom.items) > 0:
+                    print('\nYou found the following items:')
+                    for item in player.currentRoom.items:
+                        print(item.name)
+                else:
+                    print('\nThere doesn\'t seem to be any items here')
+            else:
+                print("Nothing but darkness lies ahead. Choose another path.")
+        elif move[0] == "e":
+            if hasattr(player.currentRoom, 'go_e'):
+                player.currentRoom = player.currentRoom.go_e
+                print(f'You went to the East and ended up in the {player.currentRoom}.\n')
+                print(textwrap.fill(player.currentRoom.description, 50))
+                if len(player.currentRoom.items) > 0:
+                    print('\nYou found the following items:')
+                    for item in player.currentRoom.items:
+                        print(item.name)
+                else:
+                    print('\nThere doesn\'t seem to be any items here')
+            else:
+                print("Nothing but darkness lies ahead. Choose another path.")
+        elif move[0] == "s":
+            if hasattr(player.currentRoom, 'go_s'):
+                player.currentRoom = player.currentRoom.go_s
+                print(f'You went to the South and ended up in the {player.currentRoom}.\n')
+                print(textwrap.fill(player.currentRoom.description, 50))
+                if len(player.currentRoom.items) > 0:
+                    print('\nYou found the following items:')
+                    for item in player.currentRoom.items:
+                        print(item.name)
+                else:
+                    print('\nThere doesn\'t seem to be any items here')
+            else:
+                print("Nothing but darkness lies ahead. Choose another path.")
+        elif move[0] == "w":
+            if hasattr(player.currentRoom, 'go_w'):
+                player.currentRoom = player.currentRoom.go_w
+                print(f'You went to the West and ended up in the {player.currentRoom}.\n')
+                print(textwrap.fill(player.currentRoom.description, 50))
+                if len(player.currentRoom.items) > 0:
+                    print('\nYou found the following items:')
+                    for item in player.currentRoom.items:
+                        print(item.name)
+                else:
+                    print('\nThere doesn\'t seem to be any items here')
+            else:
+                print("Nothing but darkness lies ahead. Choose another path.")
+        elif move[0] == "i" or move[0] == "inventory":
+            if len(player.items) > 0:
+                print("You got the following items in your inventory:")
+                for item in player.items:
                     print(item.name)
             else:
-                print('\nThere doesn\'t seem to be any items here')
+                print("You don't have any items in your inventory")
+                print("Travel around and use \"get\" or \"take\" to pick them up")
+        elif move[0] == "help":
+            print("\nHere is a list of commands you can use:\n\nDirectional:\nn (goes north from current position)\ne (goes east from current position)\ns (goes south from current position)\nw (goes west from current position)\n\nItems:\ni (lists the items you've picked up)\ninventory (lists the items you\'ve picked up)\nget itemname (replace itemname with the item to pick up from the current location)\ntake itemname (replace itemname with the item to pick up from the current location)\ndrop itemname (replace itemname with the item to drop at the current location)\n\nOthers:\nq (quits the game)\nhelp (provides information on all in-game commands")
         else:
-            print("Nothing but darkness lies ahead. Choose another path.")
-    elif move == "e":
-        if hasattr(player.currentRoom, 'go_e'):
-            player.currentRoom = player.currentRoom.go_e
-            print(f'You went to the East and ended up in the {player.currentRoom}.\n')
-            print(textwrap.fill(player.currentRoom.description, 50))
-            if len(player.currentRoom.items) > 0:
-                print('\nYou found the following items:')
-                for item in player.currentRoom.items:
-                    print(item.name)
-            else:
-                print('\nThere doesn\'t seem to be any items here')
-        else:
-            print("Nothing but darkness lies ahead. Choose another path.")
-    elif move == "s":
-        if hasattr(player.currentRoom, 'go_s'):
-            player.currentRoom = player.currentRoom.go_s
-            print(f'You went to the South and ended up in the {player.currentRoom}.\n')
-            print(textwrap.fill(player.currentRoom.description, 50))
-            if len(player.currentRoom.items) > 0:
-                print('\nYou found the following items:')
-                for item in player.currentRoom.items:
-                    print(item.name)
-            else:
-                print('\nThere doesn\'t seem to be any items here')
-        else:
-            print("Nothing but darkness lies ahead. Choose another path.")
-    elif move == "w":
-        if hasattr(player.currentRoom, 'go_w'):
-            player.currentRoom = player.currentRoom.go_w
-            print(f'You went to the West and ended up in the {player.currentRoom}.\n')
-            print(textwrap.fill(player.currentRoom.description, 50))
-            if len(player.currentRoom.items) > 0:
-                print('\nYou found the following items:')
-                for item in player.currentRoom.items:
-                    print(item.name)
-            else:
-                print('\nThere doesn\'t seem to be any items here')
-        else:
-            print("Nothing but darkness lies ahead. Choose another path.")
+            print("Please enter a valid direction or \'q\' to quit")
+        move = input("\nEnter N, S, W, or E to move in the direction:").lower().split()
+
     else:
-        print("Please enter a valid direction or \'q\' to quit")
-    move = input("\nEnter N, S, W, or E to move in the direction:").lower()
+        # there are two words
+        if move[0] == "take" or move[0] == "get":
+            foundItem = False
+            for item in player.currentRoom.items:
+                if move[1] == item.name:
+                    player.currentRoom.items.remove(item)
+                    player.items.append(item)
+                    print(f'{player.name} picked up the {move[1]} from the {player.currentRoom.name}!')
+                    foundItem = True
+            if foundItem == False:
+                print(f'Could not find \"{move[1]}\" in this area')
+        elif move[0] == "drop":
+            foundItem = False
+            for item in player.items:
+                if move[1] == item.name:
+                    player.items.remove(item)
+                    player.currentRoom.items.append(item)
+                    print(f'You\'ve dropped the {item.name} in the {player.currentRoom.name}.')
+                    foundItem = True
+            if foundItem == False:
+                print(f'{player.name} does not have a {move[1]} in the inventory')
+        else:
+            print("Please enter a valid command or \'q\' to quit")
+
+        move = input("\nEnter N, S, W, or E to move in the direction:").lower().split()
+
 
 print("Next time don't just quit but finish what you started!")

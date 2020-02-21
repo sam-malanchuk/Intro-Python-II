@@ -4,9 +4,10 @@ from room import Room
 # currently.
 
 class Player:
-    def __init__(self, name, currentRoom):
+    def __init__(self, name, currentRoom, items=[]):
         self.name = name
         self.currentRoom = currentRoom
+        self.items = items
 
     def __str__(self):
-        return f'Hey there, my name is {self.name} and I\'m currently in {self.currentRoom}'
+        return f'Hey there, my name is {self.name} and I\'m currently in {self.currentRoom}.'

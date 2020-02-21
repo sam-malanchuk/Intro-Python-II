@@ -1,16 +1,28 @@
+from item import Item
 from room import Room
 from player import Player
 import textwrap
 
+# Declare all the items
+
+item = {
+    'sword': Item('Bronze Sword', 'an extremely powerful and reinforced bronze with a sharp double-edged blade'),
+    'treasure': Item('Treasure Box', 'something about the treasure box'),
+    'shrubs': Item('Mountain Shrubs', 'something about the mountain shrubs'),
+    'coat': Item('Fur Coat', 'something about the fur coat'),
+    'fish': Item('Sea Fish', 'something about the sea fish'),
+    'rope': Item('Rope', 'something about the rope'),
+}
+
 # Declare all the rooms
 
 room = {
-    'fay': Room("Fay Pirate Bay", "Here you found an fleet of Pirate ships on the beach. Over to the left near the coconut tree you notice a group of Pirates yelling while all circled around a treasure map. Frightened you need to move on before they notice you are witnessing the scene."),
-    'village': Room("Westlight Village", "You were born in this small village and know every brick. As a child you were a troublemaker and have not left a single stone unturned. You're tired of this place and would like to go out and see the world. What adventure lies ahead?"),
-    'mountain': Room("Northcrest Mountain", "You walked for what seemed like weeks and you are finally at the top of mount Northcrest. In the far east you can see the Woodmallow Forest and over to the North you see the Fay Pirate Bay. You realize you can't say up here for long."),
-    'forest': Room("Woodmallow Forest", "It's lighter than you expected, the light shines through the branches creating patterns that almost looks like a path. You start to follow it but realize it's only taking you in circles. Again you'll have to use your compass to keep going."),
-    'castle': Room("Black Castle", "You sneaked into the castle using a small gate you found over on the northwest corner of the Castle wall. You start looking around and find the citizens of the castle are quite nice. You take a quick note of the location and move on with your journey."),
-    'island': Room("Glassfall Island", "At last, a few days at sea and you weren't sure if you were going to make it. What can you find here? Is the island inhabited? You do some exploration and find some nice greenry for shelter. You spend the night there and at dawn head out to the mainland again."),
+    'fay': Room("Fay Pirate Bay", "Here you found an fleet of Pirate ships on the beach. Over to the left near the coconut tree you notice a group of Pirates yelling while all circled around a treasure map. Frightened you need to move on before they notice you are witnessing the scene.", [item['treasure']]),
+    'village': Room("Westlight Village", "You were born in this small village and know every brick. As a child you were a troublemaker and have not left a single stone unturned. You're tired of this place and would like to go out and see the world. What adventure lies ahead?", [item['rope']]),
+    'mountain': Room("Northcrest Mountain", "You walked for what seemed like weeks and you are finally at the top of mount Northcrest. In the far east you can see the Woodmallow Forest and over to the North you see the Fay Pirate Bay. You realize you can't say up here for long.", [item['shrubs']]),
+    'forest': Room("Woodmallow Forest", "It's lighter than you expected, the light shines through the branches creating patterns that almost looks like a path. You start to follow it but realize it's only taking you in circles. Again you'll have to use your compass to keep going.", [item['coat']]),
+    'castle': Room("Black Castle", "You sneaked into the castle using a small gate you found over on the northwest corner of the Castle wall. You start looking around and find the citizens of the castle are quite nice. You take a quick note of the location and move on with your journey.", [item['sword']]),
+    'island': Room("Glassfall Island", "At last, a few days at sea and you weren't sure if you were going to make it. What can you find here? Is the island inhabited? You do some exploration and find some nice greenry for shelter. You spend the night there and at dawn head out to the mainland again.", [item['fish']]),
 }
 
 
@@ -58,6 +70,10 @@ while move != "q":
             player.currentRoom = player.currentRoom.go_n
             print(f'You went to the North and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
+            if len(player.currentRoom.items) > 0:
+                print('room has some items')
+            else:
+                print('no items in this room')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     elif move == "e":
@@ -65,6 +81,10 @@ while move != "q":
             player.currentRoom = player.currentRoom.go_e
             print(f'You went to the East and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
+            if len(player.currentRoom.items) > 0:
+                print('room has some items')
+            else:
+                print('no items in this room')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     elif move == "s":
@@ -72,6 +92,10 @@ while move != "q":
             player.currentRoom = player.currentRoom.go_s
             print(f'You went to the South and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
+            if len(player.currentRoom.items) > 0:
+                print('room has some items')
+            else:
+                print('no items in this room')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     elif move == "w":
@@ -79,6 +103,10 @@ while move != "q":
             player.currentRoom = player.currentRoom.go_w
             print(f'You went to the West and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
+            if len(player.currentRoom.items) > 0:
+                print('room has some items')
+            else:
+                print('no items in this room')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     else:

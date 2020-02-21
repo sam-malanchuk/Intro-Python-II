@@ -71,9 +71,11 @@ while move != "q":
             print(f'You went to the North and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
             if len(player.currentRoom.items) > 0:
-                print('room has some items')
+                print('\nYou found the following items:')
+                for item in player.currentRoom.items:
+                    print(item.name)
             else:
-                print('no items in this room')
+                print('\nThere doesn\'t seem to be any items here')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     elif move == "e":
@@ -82,9 +84,11 @@ while move != "q":
             print(f'You went to the East and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
             if len(player.currentRoom.items) > 0:
-                print('room has some items')
+                print('\nYou found the following items:')
+                for item in player.currentRoom.items:
+                    print(item.name)
             else:
-                print('no items in this room')
+                print('\nThere doesn\'t seem to be any items here')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     elif move == "s":
@@ -93,9 +97,11 @@ while move != "q":
             print(f'You went to the South and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
             if len(player.currentRoom.items) > 0:
-                print('room has some items')
+                print('\nYou found the following items:')
+                for item in player.currentRoom.items:
+                    print(item.name)
             else:
-                print('no items in this room')
+                print('\nThere doesn\'t seem to be any items here')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     elif move == "w":
@@ -104,9 +110,11 @@ while move != "q":
             print(f'You went to the West and ended up in the {player.currentRoom}.\n')
             print(textwrap.fill(player.currentRoom.description, 50))
             if len(player.currentRoom.items) > 0:
-                print('room has some items')
+                print('\nYou found the following items:')
+                for item in player.currentRoom.items:
+                    print(item.name)
             else:
-                print('no items in this room')
+                print('\nThere doesn\'t seem to be any items here')
         else:
             print("Nothing but darkness lies ahead. Choose another path.")
     else:
